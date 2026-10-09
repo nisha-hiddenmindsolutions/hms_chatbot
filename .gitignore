@@ -1,0 +1,17 @@
+# Virtual environment
+.venv/
+
+# Environment variables and secrets
+.env
+.streamlit/secrets.toml
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Vector database
+vector_store/
+
+# Logs
+logs/
+*.log
