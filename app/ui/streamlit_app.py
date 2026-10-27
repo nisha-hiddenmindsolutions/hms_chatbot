@@ -61,14 +61,14 @@ st.markdown(
         font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
     }
 
-    /* App Background */
+    /* App Background (Warm Off-White matching hiddenmindsolutions.in) */
     .stApp {
-        background-color: #ffffff !important;
-        color: #1f1f1f !important;
+        background-color: #f4f3ef !important;
+        color: #111827 !important;
     }
 
     .main {
-        background-color: #ffffff !important;
+        background-color: #f4f3ef !important;
     }
 
     .block-container {
@@ -89,7 +89,7 @@ st.markdown(
     [data-testid="collapsedControl"], [data-testid="stSidebarCollapseButton"] {
         visibility: visible !important;
         display: flex !important;
-        color: #2563eb !important;
+        color: #0f172a !important;
     }
 
     /* Top Navigation Bar */
@@ -98,7 +98,7 @@ st.markdown(
         align-items: center;
         justify-content: space-between;
         padding: 12px 0 24px 0;
-        border-bottom: 1px solid #f0f4f9;
+        border-bottom: 1px solid #e5e3dc;
         margin-bottom: 28px;
     }
 
@@ -108,7 +108,7 @@ st.markdown(
         gap: 10px;
         font-size: 20px;
         font-weight: 600;
-        color: #1f1f1f;
+        color: #111827;
     }
 
     .hms-icon {
@@ -129,10 +129,10 @@ st.markdown(
         color: #2563eb;
         font-weight: 600;
         font-size: 15px;
-        background: #eff6ff;
+        background: #ffffff;
         padding: 3px 8px;
         border-radius: 6px;
-        border: 1px solid #bfdbfe;
+        border: 1px solid #dcdad2;
     }
 
     .hms-user-profile {
@@ -145,14 +145,14 @@ st.markdown(
         width: 36px;
         height: 36px;
         border-radius: 50%;
-        background: linear-gradient(135deg, #1e293b, #0f172a);
+        background: #0f172a;
         color: white;
         display: flex;
         align-items: center;
         justify-content: center;
         font-weight: 700;
         font-size: 14px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.12);
     }
 
     /* Hero Greeting Banner */
@@ -163,19 +163,17 @@ st.markdown(
 
     .greeting-title {
         font-size: 52px;
-        font-weight: 500;
+        font-weight: 600;
         line-height: 1.15;
         letter-spacing: -0.5px;
         margin-bottom: 6px;
-        background: linear-gradient(90deg, #2563eb 0%, #3b82f6 40%, #1d4ed8 80%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: #111827;
     }
 
     .greeting-subtitle {
         font-size: 48px;
         font-weight: 500;
-        color: #c4c7c5;
+        color: #94a3b8;
         line-height: 1.15;
         letter-spacing: -0.5px;
         margin-bottom: 32px;
@@ -188,39 +186,40 @@ st.markdown(
     }
 
     [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) > div:nth-child(2) {
-        background-color: #f0f4f9 !important;
-        color: #1f1f1f !important;
+        background-color: #ffffff !important;
+        color: #111827 !important;
+        border: 1px solid #e2ded5 !important;
         border-radius: 20px 20px 4px 20px !important;
         padding: 14px 18px !important;
         max-width: 80% !important;
         margin-left: auto !important;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.03);
     }
 
     [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) > div:nth-child(2) {
         background-color: #ffffff !important;
-        color: #1f1f1f !important;
-        border: 1px solid #e3e3e3 !important;
+        color: #111827 !important;
+        border: 1px solid #e5e3dc !important;
         border-radius: 20px 20px 20px 4px !important;
-        padding: 16px 20px !important;
+        padding: 18px 22px !important;
         max-width: 85% !important;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.04);
     }
 
-    /* Floating Pill Input Bar - Aligned Exactly from Explore Services (Card 1) to View Portfolio (Card 4) */
+    /* Floating Pill Input Bar - Aligned Exactly to 960px Grid */
     [data-testid="stBottom"] {
-        background-color: #ffffff !important;
+        background-color: #f4f3ef !important;
     }
 
     [data-testid="stBottomBlockContainer"] {
-        background-color: #ffffff !important;
+        background-color: #f4f3ef !important;
         border-top: none !important;
         max-width: 960px !important;
         margin: 0 auto !important;
     }
 
     [data-testid="stChatInputContainer"] {
-        background-color: #ffffff !important;
+        background-color: #f4f3ef !important;
         max-width: 960px !important;
         margin: 0 auto !important;
     }
@@ -231,43 +230,50 @@ st.markdown(
     }
 
     [data-testid="stChatInput"] > div {
-        background-color: #f0f4f9 !important;
-        border: 1px solid #e3e3e3 !important;
-        border-radius: 28px !important;
-        padding: 4px 12px !important;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
+        background-color: #ffffff !important;
+        border: 1px solid #dcdad2 !important;
+        border-radius: 36px !important;
+        padding: 4px 14px !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
         transition: all 0.2s ease;
     }
 
     [data-testid="stChatInput"] > div:focus-within {
-        border-color: #93c5fd !important;
+        border-color: #2563eb !important;
         background-color: #ffffff !important;
-        box-shadow: 0 4px 20px rgba(37, 99, 235, 0.15) !important;
+        box-shadow: 0 4px 24px rgba(37, 99, 235, 0.12) !important;
     }
 
     [data-testid="stChatInput"] textarea {
-        color: #1f1f1f !important;
-        font-size: 16px !important;
+        color: #111827 !important;
+        font-size: 15px !important;
         background: transparent !important;
     }
 
     [data-testid="stChatInput"] textarea::placeholder {
-        color: #5f6368 !important;
+        color: #64748b !important;
+        font-size: 15px !important;
     }
 
     [data-testid="stChatInput"] button {
-        background-color: #2563eb !important;
+        background-color: #c5d3e0 !important;
         color: #ffffff !important;
         border-radius: 50% !important;
         width: 38px !important;
         height: 38px !important;
+        border: none !important;
+        transition: all 0.2s ease !important;
+    }
+
+    [data-testid="stChatInput"] button:hover {
+        background-color: #0f172a !important;
     }
 
     /* Disclaimer Footer */
     .hms-disclaimer {
         text-align: center;
         font-size: 12px;
-        color: #747775;
+        color: #78716c;
         margin-top: 10px;
     }
 
@@ -278,42 +284,43 @@ st.markdown(
 
     /* Sidebar Styling */
     section[data-testid="stSidebar"] {
-        background-color: #f8fafc !important;
-        border-right: 1px solid #e2e8f0 !important;
+        background-color: #eeebe5 !important;
+        border-right: 1px solid #e0dcd3 !important;
     }
 
     section[data-testid="stSidebar"] .stButton > button {
-        background-color: #ffffff;
-        border: 1px solid #cbd5e1;
-        border-radius: 14px;
-        color: #1e293b;
-        font-weight: 500;
-        padding: 10px 16px;
-        text-align: left;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        background-color: #ffffff !important;
+        border: 1px solid #dcdad2 !important;
+        border-radius: 12px !important;
+        color: #1e293b !important;
+        font-weight: 500 !important;
+        padding: 10px 16px !important;
+        text-align: left !important;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.02) !important;
     }
 
     section[data-testid="stSidebar"] .stButton > button:hover {
-        background-color: #eff6ff;
-        border-color: #3b82f6;
-        color: #1d4ed8;
+        background-color: #f4f3ef !important;
+        border-color: #0f172a !important;
+        color: #0f172a !important;
     }
 
-    /* Card Action Buttons styling override */
+    /* Card Action Buttons styling */
     .stButton > button {
-        border-radius: 14px;
-        border: 1px solid #e2e8f0;
-        background-color: #f8fafc;
-        color: #1e293b;
+        border-radius: 12px;
+        border: 1px solid #dcdad2;
+        background-color: #ffffff;
+        color: #111827;
         padding: 12px;
         font-weight: 500;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.02);
         transition: all 0.2s ease;
     }
 
     .stButton > button:hover {
-        background-color: #eff6ff;
-        border-color: #2563eb;
-        color: #1d4ed8;
+        background-color: #0f172a;
+        border-color: #0f172a;
+        color: #ffffff;
     }
     </style>
     """,
@@ -445,7 +452,7 @@ with st.sidebar:
 # CHAT INPUT PROCESSING & PROMPT CAPTURE
 # ============================================================
 
-prompt_input = st.chat_input("Enter a prompt here")
+prompt_input = st.chat_input("Ask about services, hiring, team...")
 
 if st.session_state.active_prompt:
     prompt_input = st.session_state.active_prompt
@@ -473,10 +480,10 @@ if not st.session_state.messages and not prompt_input:
     with col1:
         st.markdown(
             """
-            <div style="height: 38px; font-weight: 600; font-size: 14px; color: #1e293b; line-height: 1.35; margin-bottom: 6px; overflow: hidden;">
+            <div style="height: 38px; font-weight: 600; font-size: 14px; color: #111827; line-height: 1.35; margin-bottom: 6px; overflow: hidden;">
                 Explore Tech & Services
             </div>
-            <div style="height: 68px; font-size: 12px; color: #475569; background: #f8fafc; padding: 8px 10px; border-radius: 10px; border: 1px solid #e2e8f0; font-family: monospace; overflow: hidden; margin-bottom: 12px; line-height: 1.5;">
+            <div style="height: 68px; font-size: 12px; color: #475569; background: #ffffff; padding: 8px 10px; border-radius: 10px; border: 1px solid #dcdad2; font-family: monospace; overflow: hidden; margin-bottom: 12px; line-height: 1.5; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
                 1. Web & AI Services<br>
                 2. Python & MERN Stack<br>
                 3. Cloud & DevOps
@@ -491,10 +498,10 @@ if not st.session_state.messages and not prompt_input:
     with col2:
         st.markdown(
             """
-            <div style="height: 38px; font-weight: 600; font-size: 14px; color: #1e293b; line-height: 1.35; margin-bottom: 6px; overflow: hidden;">
+            <div style="height: 38px; font-weight: 600; font-size: 14px; color: #111827; line-height: 1.35; margin-bottom: 6px; overflow: hidden;">
                 Contact & Location
             </div>
-            <div style="height: 68px; font-size: 12px; color: #475569; background: #f8fafc; padding: 8px 10px; border-radius: 10px; border: 1px solid #e2e8f0; font-family: monospace; overflow: hidden; margin-bottom: 12px; line-height: 1.5;">
+            <div style="height: 68px; font-size: 12px; color: #475569; background: #ffffff; padding: 8px 10px; border-radius: 10px; border: 1px solid #dcdad2; font-family: monospace; overflow: hidden; margin-bottom: 12px; line-height: 1.5; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
                 📍 Udaipur Headquarters<br>
                 ✉️ info@hiddenmindsolutions.in<br>
                 📞 +91 9376778747
@@ -509,10 +516,10 @@ if not st.session_state.messages and not prompt_input:
     with col3:
         st.markdown(
             """
-            <div style="height: 38px; font-weight: 600; font-size: 14px; color: #1e293b; line-height: 1.35; margin-bottom: 6px; overflow: hidden;">
+            <div style="height: 38px; font-weight: 600; font-size: 14px; color: #111827; line-height: 1.35; margin-bottom: 6px; overflow: hidden;">
                 Leadership & Core Team
             </div>
-            <div style="height: 68px; font-size: 12px; color: #475569; background: #f8fafc; padding: 8px 10px; border-radius: 10px; border: 1px solid #e2e8f0; font-family: monospace; overflow: hidden; margin-bottom: 12px; line-height: 1.5;">
+            <div style="height: 68px; font-size: 12px; color: #475569; background: #ffffff; padding: 8px 10px; border-radius: 10px; border: 1px solid #dcdad2; font-family: monospace; overflow: hidden; margin-bottom: 12px; line-height: 1.5; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
                 • Himanshu Sanadhya (CEO)<br>
                 • Tushar Vaghela (CTO)<br>
                 • Core Team & Leadership
@@ -527,10 +534,10 @@ if not st.session_state.messages and not prompt_input:
     with col4:
         st.markdown(
             """
-            <div style="height: 38px; font-weight: 600; font-size: 14px; color: #1e293b; line-height: 1.35; margin-bottom: 6px; overflow: hidden;">
+            <div style="height: 38px; font-weight: 600; font-size: 14px; color: #111827; line-height: 1.35; margin-bottom: 6px; overflow: hidden;">
                 Portfolio & Projects
             </div>
-            <div style="height: 68px; font-size: 12px; color: #475569; background: #f8fafc; padding: 8px 10px; border-radius: 10px; border: 1px solid #e2e8f0; font-family: monospace; overflow: hidden; margin-bottom: 12px; line-height: 1.5;">
+            <div style="height: 68px; font-size: 12px; color: #475569; background: #ffffff; padding: 8px 10px; border-radius: 10px; border: 1px solid #dcdad2; font-family: monospace; overflow: hidden; margin-bottom: 12px; line-height: 1.5; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
                 • 25+ Delivered Projects<br>
                 • Real Estate & SaaS Apps<br>
                 • AI & Web Applications
