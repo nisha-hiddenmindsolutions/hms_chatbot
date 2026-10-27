@@ -269,6 +269,7 @@ st.markdown(
         font-size: 15px !important;
     }
 
+    /* Send Button: Soft slate when idle, turns sleek solid black while typing/focused */
     [data-testid="stChatInput"] button {
         background-color: #c5d3e0 !important;
         color: #ffffff !important;
@@ -276,11 +277,17 @@ st.markdown(
         width: 38px !important;
         height: 38px !important;
         border: none !important;
-        transition: all 0.2s ease !important;
+        transition: all 0.25s ease !important;
+    }
+
+    [data-testid="stChatInput"] > div:focus-within button {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
     }
 
     [data-testid="stChatInput"] button:hover {
-        background-color: #0f172a !important;
+        background-color: #000000 !important;
     }
 
     /* Disclaimer Footer */
