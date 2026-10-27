@@ -74,7 +74,7 @@ st.markdown(
     .block-container {
         max-width: 960px !important;
         padding-top: 10px !important;
-        padding-bottom: 120px !important;
+        padding-bottom: 220px !important;
     }
 
     /* Hide standard footer & main menu, but keep sidebar collapse toggle visible */
@@ -196,7 +196,8 @@ st.markdown(
 
     [data-testid="stChatMessage"] {
         background-color: transparent !important;
-        padding: 6px 0 !important;
+        padding: 4px 0 !important;
+        margin-bottom: 18px !important;
         gap: 0 !important;
         width: 100% !important;
     }
@@ -218,7 +219,7 @@ st.markdown(
         color: #111827 !important;
         border: 1px solid #e5e3dc !important;
         border-radius: 18px !important;
-        padding: 12px 20px !important;
+        padding: 12px 20px 14px 20px !important;
         max-width: 80% !important;
         width: fit-content !important;
         flex-grow: 0 !important;
@@ -256,7 +257,7 @@ st.markdown(
         color: #111827 !important;
         border: 1px solid #e5e3dc !important;
         border-radius: 18px !important;
-        padding: 16px 22px !important;
+        padding: 18px 24px 24px 24px !important;
         max-width: 85% !important;
         width: fit-content !important;
         flex-grow: 0 !important;
@@ -278,7 +279,9 @@ st.markdown(
 
     [data-testid="stChatMessageContent"][aria-label*="assistant"] p:last-child,
     [data-testid="stChatMessage"]:has([aria-label*="assistant"]) [data-testid="stChatMessageContent"] p:last-child,
-    [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) [data-testid="stChatMessageContent"] p:last-child {
+    [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) [data-testid="stChatMessageContent"] p:last-child,
+    [data-testid="stChatMessageContent"][aria-label*="assistant"] ul:last-child,
+    [data-testid="stChatMessageContent"][aria-label*="assistant"] ol:last-child {
         margin-bottom: 0 !important;
     }
 
@@ -394,6 +397,7 @@ st.markdown(
         font-size: 12px;
         color: #78716c;
         margin-top: 10px;
+        padding-bottom: 16px;
     }
 
     .hms-disclaimer a {
@@ -430,7 +434,7 @@ st.markdown(
         border: 1px solid #dcdad2;
         background-color: #ffffff;
         color: #111827;
-        padding: 12px;
+        padding: 12px 18px 14px 18px !important;
         font-weight: 500;
         box-shadow: 0 1px 3px rgba(0,0,0,0.02);
         transition: all 0.2s ease;
