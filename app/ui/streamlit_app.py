@@ -206,20 +206,25 @@ st.markdown(
         box-shadow: 0 2px 10px rgba(0,0,0,0.04);
     }
 
-    /* Floating Pill Input Bar - Aligned Exactly to 960px Grid */
-    [data-testid="stBottom"] {
+    /* Floating Pill Input Bar & Entire Bottom Fixed Container (No White Boxes) */
+    [data-testid="stBottom"],
+    [data-testid="stBottom"] > div,
+    [data-testid="stBottom"] div,
+    .stBottom,
+    .stBottom > div,
+    [data-testid="stBottomBlockContainer"],
+    [data-testid="stChatInputContainer"] {
         background-color: #f4f3ef !important;
+        background: #f4f3ef !important;
+        border-top: none !important;
     }
 
     [data-testid="stBottomBlockContainer"] {
-        background-color: #f4f3ef !important;
-        border-top: none !important;
         max-width: 960px !important;
         margin: 0 auto !important;
     }
 
     [data-testid="stChatInputContainer"] {
-        background-color: #f4f3ef !important;
         max-width: 960px !important;
         margin: 0 auto !important;
     }
