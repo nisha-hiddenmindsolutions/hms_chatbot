@@ -211,15 +211,16 @@ st.markdown(
         padding: 6px 0 !important;
     }
 
-    /* Customer Bubble: Solid White Rounded Card hugging the text on the Right */
+    /* Customer Card: Identical format to response card, aligned to Right */
     [data-testid="stChatMessageContent"][aria-label*="user"],
     [data-testid="stChatMessage"]:has([aria-label*="user"]) [data-testid="stChatMessageContent"],
     [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) [data-testid="stChatMessageContent"] {
         background-color: #ffffff !important;
         color: #111827 !important;
         border: 1px solid #e5e3dc !important;
-        border-radius: 18px !important;
-        padding: 12px 20px 14px 20px !important;
+        border-radius: 16px !important;
+        padding: 16px 22px !important;
+        min-width: 90px !important;
         max-width: 80% !important;
         width: fit-content !important;
         flex-grow: 0 !important;
@@ -236,8 +237,8 @@ st.markdown(
         color: #111827 !important;
         margin: 0 !important;
         font-size: 15px !important;
-        line-height: 1.5 !important;
-        font-weight: 500 !important;
+        line-height: 1.6 !important;
+        font-weight: 400 !important;
     }
 
     /* AGENT (ASSISTANT) MESSAGE: FLUSH LEFT */
@@ -249,15 +250,15 @@ st.markdown(
         padding: 8px 0 !important;
     }
 
-    /* Agent Bubble: Solid White Rounded Card on the Left */
+    /* Agent Card: Identical format, aligned to Left */
     [data-testid="stChatMessageContent"][aria-label*="assistant"],
     [data-testid="stChatMessage"]:has([aria-label*="assistant"]) [data-testid="stChatMessageContent"],
     [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) [data-testid="stChatMessageContent"] {
         background-color: #ffffff !important;
         color: #111827 !important;
         border: 1px solid #e5e3dc !important;
-        border-radius: 18px !important;
-        padding: 18px 24px 24px 24px !important;
+        border-radius: 16px !important;
+        padding: 16px 22px 20px 22px !important;
         max-width: 85% !important;
         width: fit-content !important;
         flex-grow: 0 !important;
