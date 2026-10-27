@@ -202,16 +202,16 @@ st.markdown(
         width: 100% !important;
     }
 
-    /* CUSTOMER (USER) MESSAGE: FLUSH RIGHT */
+    /* CUSTOMER (USER) MESSAGE: CENTERED */
     [data-testid="stChatMessage"]:has([aria-label*="user"]),
     [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) {
         display: flex !important;
         flex-direction: row !important;
-        justify-content: flex-end !important;
+        justify-content: center !important;
         padding: 6px 0 !important;
     }
 
-    /* Customer Card: Identical format to response card, aligned to Right */
+    /* Customer Card: White rounded card centered horizontally */
     [data-testid="stChatMessageContent"][aria-label*="user"],
     [data-testid="stChatMessage"]:has([aria-label*="user"]) [data-testid="stChatMessageContent"],
     [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) [data-testid="stChatMessageContent"] {
@@ -219,14 +219,15 @@ st.markdown(
         color: #111827 !important;
         border: 1px solid #e5e3dc !important;
         border-radius: 16px !important;
-        padding: 16px 22px !important;
+        padding: 14px 26px !important;
         min-width: 90px !important;
         max-width: 80% !important;
         width: fit-content !important;
         flex-grow: 0 !important;
         flex-shrink: 1 !important;
         margin-left: auto !important;
-        margin-right: 0 !important;
+        margin-right: auto !important;
+        text-align: center !important;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
         word-break: break-word !important;
     }
@@ -239,6 +240,7 @@ st.markdown(
         font-size: 15px !important;
         line-height: 1.6 !important;
         font-weight: 400 !important;
+        text-align: center !important;
     }
 
     /* AGENT (ASSISTANT) MESSAGE: FLUSH LEFT */
