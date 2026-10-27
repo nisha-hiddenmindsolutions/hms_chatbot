@@ -180,7 +180,7 @@ st.markdown(
         margin-bottom: 32px;
     }
 
-    /* Streamlit Chat Messages Styling: Customer on Right, Agent on Left, Zero Avatars/Emojis */
+    /* Streamlit Chat Messages Styling: Customer on Right, Agent on Left, Zero Avatars/Emojis (Matching Reference) */
     [data-testid^="stChatMessageAvatar"],
     [data-testid="stChatMessageAvatarUser"],
     [data-testid="stChatMessageAvatarAssistant"],
@@ -196,76 +196,90 @@ st.markdown(
 
     [data-testid="stChatMessage"] {
         background-color: transparent !important;
-        padding: 8px 0 !important;
+        padding: 6px 0 !important;
         gap: 0 !important;
         width: 100% !important;
     }
 
-    /* CUSTOMER (USER) MESSAGE: ALIGNED TO THE RIGHT */
+    /* CUSTOMER (USER) MESSAGE: FLUSH RIGHT */
     [data-testid="stChatMessage"]:has([aria-label*="user"]),
     [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) {
         display: flex !important;
-        flex-direction: row-reverse !important;
-        justify-content: flex-start !important;
+        flex-direction: row !important;
+        justify-content: flex-end !important;
         padding: 6px 0 !important;
     }
 
+    /* Customer Bubble: Solid White Rounded Card hugging the text on the Right */
     [data-testid="stChatMessageContent"][aria-label*="user"],
     [data-testid="stChatMessage"]:has([aria-label*="user"]) [data-testid="stChatMessageContent"],
     [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) [data-testid="stChatMessageContent"] {
-        background-color: #e8f3fe !important;
-        color: #0f172a !important;
-        border: none !important;
-        border-radius: 20px !important;
-        padding: 9px 18px !important;
-        max-width: 75% !important;
+        background-color: #ffffff !important;
+        color: #111827 !important;
+        border: 1px solid #e5e3dc !important;
+        border-radius: 18px !important;
+        padding: 12px 20px !important;
+        max-width: 80% !important;
         width: fit-content !important;
+        flex-grow: 0 !important;
+        flex-shrink: 1 !important;
         margin-left: auto !important;
         margin-right: 0 !important;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
         word-break: break-word !important;
     }
 
     [data-testid="stChatMessageContent"][aria-label*="user"] p,
     [data-testid="stChatMessage"]:has([aria-label*="user"]) [data-testid="stChatMessageContent"] p,
     [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) [data-testid="stChatMessageContent"] p {
-        color: #0f172a !important;
+        color: #111827 !important;
         margin: 0 !important;
         font-size: 15px !important;
         line-height: 1.5 !important;
-        font-weight: 400 !important;
+        font-weight: 500 !important;
     }
 
-    /* AGENT (ASSISTANT) MESSAGE: ALIGNED TO THE LEFT */
+    /* AGENT (ASSISTANT) MESSAGE: FLUSH LEFT */
     [data-testid="stChatMessage"]:has([aria-label*="assistant"]),
     [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) {
         display: flex !important;
         flex-direction: row !important;
         justify-content: flex-start !important;
-        padding: 10px 0 !important;
+        padding: 8px 0 !important;
     }
 
+    /* Agent Bubble: Solid White Rounded Card on the Left */
     [data-testid="stChatMessageContent"][aria-label*="assistant"],
     [data-testid="stChatMessage"]:has([aria-label*="assistant"]) [data-testid="stChatMessageContent"],
     [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) [data-testid="stChatMessageContent"] {
-        background-color: transparent !important;
+        background-color: #ffffff !important;
         color: #111827 !important;
-        border: none !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-        max-width: 100% !important;
-        width: 100% !important;
+        border: 1px solid #e5e3dc !important;
+        border-radius: 18px !important;
+        padding: 16px 22px !important;
+        max-width: 85% !important;
+        width: fit-content !important;
+        flex-grow: 0 !important;
+        flex-shrink: 1 !important;
         margin-left: 0 !important;
         margin-right: auto !important;
-        font-size: 15px !important;
-        line-height: 1.65 !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+        word-break: break-word !important;
     }
 
     [data-testid="stChatMessageContent"][aria-label*="assistant"] p,
     [data-testid="stChatMessage"]:has([aria-label*="assistant"]) [data-testid="stChatMessageContent"] p,
     [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) [data-testid="stChatMessageContent"] p {
         color: #111827 !important;
-        margin-bottom: 12px !important;
+        margin-bottom: 10px !important;
+        font-size: 15px !important;
+        line-height: 1.6 !important;
+    }
+
+    [data-testid="stChatMessageContent"][aria-label*="assistant"] p:last-child,
+    [data-testid="stChatMessage"]:has([aria-label*="assistant"]) [data-testid="stChatMessageContent"] p:last-child,
+    [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) [data-testid="stChatMessageContent"] p:last-child {
+        margin-bottom: 0 !important;
     }
 
     [data-testid="stChatMessageContent"][aria-label*="assistant"] ul,
@@ -273,7 +287,7 @@ st.markdown(
     [data-testid="stChatMessage"]:has([aria-label*="assistant"]) [data-testid="stChatMessageContent"] ul,
     [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) [data-testid="stChatMessageContent"] ol {
         color: #111827 !important;
-        margin-bottom: 12px !important;
+        margin-bottom: 10px !important;
         padding-left: 20px !important;
     }
 
@@ -282,6 +296,13 @@ st.markdown(
     [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) [data-testid="stChatMessageContent"] li {
         color: #111827 !important;
         margin-bottom: 4px !important;
+    }
+
+    /* Markdown container inside chat message: Ensure it wraps content tightly */
+    [data-testid="stChatMessageContent"] .stMarkdown,
+    [data-testid="stChatMessageContent"] [data-testid="stMarkdownContainer"] {
+        width: fit-content !important;
+        max-width: 100% !important;
     }
 
     /* Floating Pill Input Bar & Entire Bottom Fixed Container (No White Boxes) */
