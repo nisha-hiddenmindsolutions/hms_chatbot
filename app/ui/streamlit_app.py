@@ -114,7 +114,7 @@ st.markdown(
     .hms-icon {
         width: 32px;
         height: 32px;
-        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        background: #000000;
         color: white;
         border-radius: 8px;
         display: flex;
@@ -122,17 +122,18 @@ st.markdown(
         justify-content: center;
         font-weight: 700;
         font-size: 14px;
-        box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     }
 
     .hms-badge {
-        color: #2563eb;
+        color: #111827 !important;
         font-weight: 600;
-        font-size: 15px;
-        background: #ffffff;
-        padding: 3px 8px;
+        font-size: 14px;
+        background: #ffffff !important;
+        padding: 3px 10px;
         border-radius: 6px;
         border: 1px solid #dcdad2;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.02);
     }
 
     .hms-user-profile {
@@ -209,7 +210,6 @@ st.markdown(
     /* Floating Pill Input Bar & Entire Bottom Fixed Container (No White Boxes) */
     [data-testid="stBottom"],
     [data-testid="stBottom"] > div,
-    [data-testid="stBottom"] div,
     .stBottom,
     .stBottom > div,
     [data-testid="stBottomBlockContainer"],
@@ -232,10 +232,18 @@ st.markdown(
     [data-testid="stChatInput"] {
         max-width: 960px !important;
         margin: 0 auto !important;
+        background: transparent !important;
+    }
+
+    /* Entire Input Pill Background Pure Solid White */
+    [data-testid="stChatInput"] > div,
+    [data-testid="stChatInput"] > div > div,
+    [data-testid="stChatInput"] textarea {
+        background-color: #ffffff !important;
+        background: #ffffff !important;
     }
 
     [data-testid="stChatInput"] > div {
-        background-color: #ffffff !important;
         border: 1px solid #dcdad2 !important;
         border-radius: 36px !important;
         padding: 4px 14px !important;
@@ -244,15 +252,16 @@ st.markdown(
     }
 
     [data-testid="stChatInput"] > div:focus-within {
-        border-color: #2563eb !important;
-        background-color: #ffffff !important;
-        box-shadow: 0 4px 24px rgba(37, 99, 235, 0.12) !important;
+        border-color: #000000 !important;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1) !important;
     }
 
     [data-testid="stChatInput"] textarea {
         color: #111827 !important;
         font-size: 15px !important;
-        background: transparent !important;
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
     }
 
     [data-testid="stChatInput"] textarea::placeholder {
@@ -389,9 +398,6 @@ st.markdown(
             <div class="hms-icon">HMS</div>
             <span>Hidden Mind Solutions</span>
             <span class="hms-badge">AI Assistant</span>
-        </div>
-        <div class="hms-user-profile">
-            <div class="user-avatar">HMS</div>
         </div>
     </div>
     """,
