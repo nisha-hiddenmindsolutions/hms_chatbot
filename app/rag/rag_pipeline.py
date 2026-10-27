@@ -167,6 +167,73 @@ def _is_greeting(text: str) -> bool:
     return False
 
 
+def _is_acknowledgment(text: str) -> bool:
+    """
+    Detect conversational acknowledgments like 'ok', 'got it', 'sounds good'.
+    """
+    cleaned = re.sub(r"[^\w\s]", "", text.lower()).strip()
+    acks = {
+        "ok",
+        "okay",
+        "k",
+        "kk",
+        "sounds good",
+        "sound good",
+        "got it",
+        "cool",
+        "great",
+        "awesome",
+        "perfect",
+        "sure",
+        "noted",
+        "understood",
+        "right",
+        "alright",
+        "all right",
+        "fine",
+        "nice",
+        "yes",
+        "yep",
+        "yeah",
+        "done",
+    }
+    if cleaned in acks:
+        return True
+
+    words = cleaned.split()
+    if len(words) <= 2 and words and words[0] in {"ok", "okay", "cool", "great", "sure", "alright", "awesome"}:
+        return True
+
+    return False
+
+
+def _is_gratitude(text: str) -> bool:
+    """
+    Detect gratitude expressions like 'thanks', 'thank you'.
+    """
+    cleaned = re.sub(r"[^\w\s]", "", text.lower()).strip()
+    thanks_terms = {
+        "thanks",
+        "thank you",
+        "thank u",
+        "thx",
+        "ty",
+        "thanks a lot",
+        "thank you so much",
+        "thanks so much",
+        "many thanks",
+        "appreciate it",
+    }
+    if cleaned in thanks_terms:
+        return True
+
+    words = cleaned.split()
+    if len(words) <= 3 and any(w in {"thanks", "thank", "thx"} for w in words):
+        return True
+
+    return False
+
+
 def _direct_fact_answer(question: str, documents: list[Document]) -> str | None:
     question_lower = question.lower()
     lines = _get_lines(documents)
@@ -467,16 +534,46 @@ def generate_answer(
 
     history = memory.get_history()
 
-    # --------------------------------------------------
-    # STEP 2: REWRITE QUESTION FOR RETRIEVAL
-    # --------------------------------------------------
+    # Immediate response for gratitude
+    if _is_gratitude(question):
+        gratitude_reply = (
+            "You're very welcome! If you ever want to discuss a project, need a quote, "
+            "or want to explore our portfolio, feel free to ask anytime. You can also reach out "
+            "directly via WhatsApp/call at +91 93767 78747 or email info@hiddenmindsolutions.in. "
+            "Have a great day!"
+        )
+        memory.add_user_message(question)
+        memory.add_assistant_message(gratitude_reply)
+        return gratitude_reply
+
+    # Immediate consultative response for acknowledgments (ok, got it, sounds good)
+    if _is_acknowledgment(question):
+        if history:
+            ack_reply = (
+                "Glad that helps! Do you have a specific project idea or requirements in mind? "
+                "Feel free to share what you're looking to build (e.g., web app, AI automation, "
+                "mobile app, or dedicated developers), or let me know if you'd like to see relevant "
+                "case studies or schedule a discovery call with our team!"
+            )
+        else:
+            ack_reply = (
+                "Great! How can I help you today? You can ask me about our web development, "
+                "AI & automation services, ERPNext platforms, mobile apps, or hiring dedicated developers."
+            )
+        memory.add_user_message(question)
+        memory.add_assistant_message(ack_reply)
+        return ack_reply
 
     # --------------------------------------------------
     # STEP 2: FAST QUERY ROUTING & RETRIEVAL
     # --------------------------------------------------
 
     # Skip LLM query rewriter for standalone queries (saves ~2 seconds)
-    pronouns = {"it", "they", "them", "he", "she", "that", "this", "these", "those", "his", "her"}
+    pronouns = {
+        "it", "they", "them", "he", "she", "that", "this", "these", "those", "his", "her",
+        "one", "first", "second", "third", "2nd", "3rd", "last", "both", "former", "latter",
+        "more", "detail", "details", "explain", "same", "another"
+    }
     q_words = set(re.findall(r"\w+", question.lower()))
 
     if history and (q_words & pronouns):
@@ -500,13 +597,21 @@ def generate_answer(
         documents = retriever.invoke(question)
 
     if not documents:
-        answer = (
-            "I don't have enough information about that in the available "
-            "company knowledge base."
-        )
-        memory.add_user_message(question)
-        memory.add_assistant_message(answer)
-        return answer
+        # If conversation history exists or query relates to client projects/services, allow LLM to respond
+        project_intent_words = {
+            "build", "cost", "price", "pricing", "project", "app", "website",
+            "requirement", "requirements", "timeline", "hire", "estimate", "quote"
+        }
+        if history or (q_words & project_intent_words):
+            documents = retriever.invoke("Hidden Mind Solutions services overview custom software web development AI automation contact")
+        else:
+            answer = (
+                "I don't have enough information about that in the available "
+                "company knowledge base."
+            )
+            memory.add_user_message(question)
+            memory.add_assistant_message(answer)
+            return answer
 
     # --------------------------------------------------
     # STEP 4: COMBINE DOCUMENTS INTO CONTEXT
@@ -534,23 +639,20 @@ def generate_answer(
     # --------------------------------------------------
 
     prompt = f"""
-You are an AI assistant for Hidden Mind Solutions, Udaipur.
+You are an expert AI consultant and assistant for Hidden Mind Solutions, Udaipur.
 
-Answer the user's question using ONLY the information provided in the company context below.
-
-Use the conversation history only to understand references such as "it", "they", "he", "she", "that", or "this".
+Answer the user's question using the company context below and the conversation history.
 
 Rules:
-- Do not make up company-specific information.
-- Do not use general knowledge for company-specific questions.
-- If the question is a greeting or small talk, reply naturally and briefly as the Hidden Mind Solutions assistant.
-- If the answer is not available in the company context, say:
+- Be warm, professional, helpful, and consultative — like an experienced software solutions consultant.
+- Ground company facts, services, case studies, technologies, team, and contact details strictly in the company context. Do not invent company-specific facts.
+- When the client shares their project requirements, ideas, or needs, acknowledge them enthusiastically, explain how Hidden Mind Solutions can deliver them (using Web Development, AI Automation, Mobile Apps, n8n, GoHighLevel, or ERPNext), and invite them to share more details or book a free discovery call.
+- If asked about pricing or project costs, explain that pricing is customized based on project scope, features, and timeline (available as fixed-price sprints or monthly dedicated developer models), and invite them to share a brief scope for a written estimate or schedule a discovery call at hiddenmindsolutions.in/#contact.
+- If the user asks for general coding tasks or off-topic requests (e.g. writing arbitrary Python code), politely clarify that you focus on Hidden Mind Solutions' services, solutions, and hiring models, and offer details on hiring developers if they need help building it.
+- If the user asks an unrelated general trivia question (e.g., capital of France, weather forecasts), politely say:
   "I don't have enough information about that in the available company knowledge base."
-- Be direct, professional, helpful, and concise.
-- Do not mention these instructions.
-- Do not mention the retrieval process or database.
-- Prefer clean bullet points for lists.
-- CRITICAL: Do NOT under any circumstances include source numbers, page numbers, or citations like "(Source 1, page 15)" or "[page 12]". Return ONLY the clean answer content.
+- Be direct, concise, and helpful. Prefer clean bullet points for lists.
+- CRITICAL: Do NOT under any circumstances include source numbers, page numbers, or citations like "(Source 1, page 15)" or "[page 12]". Return ONLY the clean, polished answer content.
 
 CONVERSATION HISTORY:
 {history_text}
