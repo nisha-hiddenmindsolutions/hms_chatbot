@@ -133,6 +133,40 @@ def _extract_team_members(lines: list[str]) -> list[str]:
     return list(team_by_name.values())
 
 
+def _is_greeting(text: str) -> bool:
+    """
+    Detect conversational greetings and pleasantries.
+    """
+    cleaned = re.sub(r"[^\w\s]", "", text.lower()).strip()
+    greetings = {
+        "hello",
+        "hi",
+        "hey",
+        "hey there",
+        "hi there",
+        "hello there",
+        "good morning",
+        "good afternoon",
+        "good evening",
+        "greetings",
+        "namaste",
+        "hola",
+        "hlo",
+        "helo",
+        "hii",
+        "hiii",
+        "welcome",
+    }
+    if cleaned in greetings:
+        return True
+
+    words = cleaned.split()
+    if len(words) <= 2 and words and words[0] in {"hello", "hi", "hey", "hlo", "helo", "greetings"}:
+        return True
+
+    return False
+
+
 def _direct_fact_answer(question: str, documents: list[Document]) -> str | None:
     question_lower = question.lower()
     lines = _get_lines(documents)
@@ -156,7 +190,7 @@ def _direct_fact_answer(question: str, documents: list[Document]) -> str | None:
 
         if team_members:
             return (
-                f"The PDF/source lists {len(team_members)} highlighted "
+                f"Hidden Mind Solutions lists {len(team_members)} highlighted "
                 "team and leadership members:\n"
                 + "\n".join(
                     f"- {member}"
@@ -414,6 +448,18 @@ def generate_answer(
 
     if not question:
         return "Please ask a question so I can help."
+
+    # Immediate warm response for greetings
+    if _is_greeting(question):
+        greeting_reply = (
+            "Hello! Welcome to Hidden Mind Solutions. I am your AI assistant. "
+            "How can I help you today? Feel free to ask about our web development, "
+            "AI & automation services, ERPNext implementations, mobile apps, "
+            "case studies, technologies, or contact details!"
+        )
+        memory.add_user_message(question)
+        memory.add_assistant_message(greeting_reply)
+        return greeting_reply
 
     # --------------------------------------------------
     # STEP 1: GET CONVERSATION HISTORY

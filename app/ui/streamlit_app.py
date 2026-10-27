@@ -442,10 +442,21 @@ with st.sidebar:
 
 
 # ============================================================
+# CHAT INPUT PROCESSING & PROMPT CAPTURE
+# ============================================================
+
+prompt_input = st.chat_input("Enter a prompt here")
+
+if st.session_state.active_prompt:
+    prompt_input = st.session_state.active_prompt
+    st.session_state.active_prompt = None
+
+
+# ============================================================
 # EMPTY STATE: HERO GREETING & HMS PROMPT CARDS GRID
 # ============================================================
 
-if not st.session_state.messages:
+if not st.session_state.messages and not prompt_input:
     st.markdown(
         """
         <div class="hero-container">
@@ -545,15 +556,8 @@ for msg in st.session_state.messages:
 
 
 # ============================================================
-# CHAT INPUT PROCESSING
+# PROCESS NEW PROMPT
 # ============================================================
-
-prompt_input = st.chat_input("Enter a prompt here")
-
-if st.session_state.active_prompt:
-    prompt_input = st.session_state.active_prompt
-    st.session_state.active_prompt = None
-
 
 if prompt_input:
     # 1. Display User Message
