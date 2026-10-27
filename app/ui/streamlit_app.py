@@ -180,31 +180,108 @@ st.markdown(
         margin-bottom: 32px;
     }
 
-    /* Streamlit Chat Messages Styling */
+    /* Streamlit Chat Messages Styling: Customer on Right, Agent on Left, Zero Avatars/Emojis */
+    [data-testid^="stChatMessageAvatar"],
+    [data-testid="stChatMessageAvatarUser"],
+    [data-testid="stChatMessageAvatarAssistant"],
+    [data-testid="stChatMessageAvatarCustom"],
+    .stChatMessage > div:has([data-testid^="stChatMessageAvatar"]),
+    .stChatMessage [data-testid^="stChatMessageAvatar"] {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
     [data-testid="stChatMessage"] {
         background-color: transparent !important;
-        padding: 12px 0 !important;
+        padding: 8px 0 !important;
+        gap: 0 !important;
+        width: 100% !important;
     }
 
-    [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) > div:nth-child(2) {
-        background-color: #ffffff !important;
-        color: #111827 !important;
-        border: 1px solid #e2ded5 !important;
-        border-radius: 20px 20px 4px 20px !important;
-        padding: 14px 18px !important;
-        max-width: 80% !important;
+    /* CUSTOMER (USER) MESSAGE: ALIGNED TO THE RIGHT */
+    [data-testid="stChatMessage"]:has([aria-label*="user"]),
+    [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) {
+        display: flex !important;
+        flex-direction: row-reverse !important;
+        justify-content: flex-start !important;
+        padding: 6px 0 !important;
+    }
+
+    [data-testid="stChatMessageContent"][aria-label*="user"],
+    [data-testid="stChatMessage"]:has([aria-label*="user"]) [data-testid="stChatMessageContent"],
+    [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) [data-testid="stChatMessageContent"] {
+        background-color: #e8f3fe !important;
+        color: #0f172a !important;
+        border: none !important;
+        border-radius: 20px !important;
+        padding: 9px 18px !important;
+        max-width: 75% !important;
+        width: fit-content !important;
         margin-left: auto !important;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+        margin-right: 0 !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+        word-break: break-word !important;
     }
 
-    [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) > div:nth-child(2) {
-        background-color: #ffffff !important;
+    [data-testid="stChatMessageContent"][aria-label*="user"] p,
+    [data-testid="stChatMessage"]:has([aria-label*="user"]) [data-testid="stChatMessageContent"] p,
+    [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarUser"]) [data-testid="stChatMessageContent"] p {
+        color: #0f172a !important;
+        margin: 0 !important;
+        font-size: 15px !important;
+        line-height: 1.5 !important;
+        font-weight: 400 !important;
+    }
+
+    /* AGENT (ASSISTANT) MESSAGE: ALIGNED TO THE LEFT */
+    [data-testid="stChatMessage"]:has([aria-label*="assistant"]),
+    [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: flex-start !important;
+        padding: 10px 0 !important;
+    }
+
+    [data-testid="stChatMessageContent"][aria-label*="assistant"],
+    [data-testid="stChatMessage"]:has([aria-label*="assistant"]) [data-testid="stChatMessageContent"],
+    [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) [data-testid="stChatMessageContent"] {
+        background-color: transparent !important;
         color: #111827 !important;
-        border: 1px solid #e5e3dc !important;
-        border-radius: 20px 20px 20px 4px !important;
-        padding: 18px 22px !important;
-        max-width: 85% !important;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: auto !important;
+        font-size: 15px !important;
+        line-height: 1.65 !important;
+    }
+
+    [data-testid="stChatMessageContent"][aria-label*="assistant"] p,
+    [data-testid="stChatMessage"]:has([aria-label*="assistant"]) [data-testid="stChatMessageContent"] p,
+    [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) [data-testid="stChatMessageContent"] p {
+        color: #111827 !important;
+        margin-bottom: 12px !important;
+    }
+
+    [data-testid="stChatMessageContent"][aria-label*="assistant"] ul,
+    [data-testid="stChatMessageContent"][aria-label*="assistant"] ol,
+    [data-testid="stChatMessage"]:has([aria-label*="assistant"]) [data-testid="stChatMessageContent"] ul,
+    [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) [data-testid="stChatMessageContent"] ol {
+        color: #111827 !important;
+        margin-bottom: 12px !important;
+        padding-left: 20px !important;
+    }
+
+    [data-testid="stChatMessageContent"][aria-label*="assistant"] li,
+    [data-testid="stChatMessage"]:has([aria-label*="assistant"]) [data-testid="stChatMessageContent"] li,
+    [data-testid="stChatMessage"]:has([data-testid="stChatMessageAvatarAssistant"]) [data-testid="stChatMessageContent"] li {
+        color: #111827 !important;
+        margin-bottom: 4px !important;
     }
 
     /* Floating Pill Input Bar & Entire Bottom Fixed Container (No White Boxes) */
@@ -575,8 +652,7 @@ if not st.session_state.messages and not prompt_input:
 # ============================================================
 
 for msg in st.session_state.messages:
-    avatar = "👤" if msg["role"] == "user" else "🧠"
-    with st.chat_message(msg["role"], avatar=avatar):
+    with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
 
@@ -586,11 +662,11 @@ for msg in st.session_state.messages:
 
 if prompt_input:
     # 1. Display User Message
-    with st.chat_message("user", avatar="👤"):
+    with st.chat_message("user"):
         st.markdown(prompt_input)
 
     # 2. Generate RAG Response
-    with st.chat_message("assistant", avatar="🧠"):
+    with st.chat_message("assistant"):
         with st.spinner("HMS AI Assistant is thinking..."):
             try:
                 response = generate_answer(
